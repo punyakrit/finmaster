@@ -34,7 +34,8 @@ class _SplashScreenState extends State<SplashScreen> {
                         } else {
                           return Onboarding();
                         }
-                      })),
+                      })
+                      ),
             ));
   }
 

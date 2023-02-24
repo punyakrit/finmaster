@@ -1,5 +1,8 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:finmaster/provider/auth_provider.dart';
+import 'package:finmaster/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -65,7 +68,7 @@ class _LoginState extends State<Login> {
                 height: 20,
               ),
               TextFormField(
-              keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.phone,
                 cursorColor: Colors.purple,
                 controller: phoneController,
                 style:
@@ -125,11 +128,28 @@ class _LoginState extends State<Login> {
                           ))
                       : null,
                 ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: CustomButton(
+                  text: "Login",
+                  onPressed: ()=> sendPhone() ,
+                ),
               )
             ],
           ),
         ),
       )),
     );
+  }
+
+  void sendPhone() {
+    final ap = Provider.of<AuthProvider>(context, listen: false);
+    String phoneNumber = phoneController.text.trim();
+    ap.signInWithPhone(context, "+${SelectedCountry.phoneCode}$phoneNumber");
   }
 }
