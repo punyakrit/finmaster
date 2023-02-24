@@ -11,12 +11,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-
-
-
-
 class _SplashScreenState extends State<SplashScreen> {
-@override
+  @override
   void initState() {
     super.initState();
     // ignore: unnecessary_new
@@ -25,31 +21,26 @@ class _SplashScreenState extends State<SplashScreen> {
         () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                   StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Center(child: Text('Something went Wront!'));
-                } else if (snapshot.hasData) {
-                  return Home();
-                } else {
-                  return Onboarding();
-                }
-              }
-              )
-                      ),
-            )
-            );
+                  builder: (context) => StreamBuilder<User?>(
+                      stream: FirebaseAuth.instance.authStateChanges(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(child: CircularProgressIndicator());
+                        } else if (snapshot.hasError) {
+                          return Center(child: Text('Something went Wront!'));
+                        } else if (snapshot.hasData) {
+                          return Home();
+                        } else {
+                          return Onboarding();
+                        }
+                      })),
+            ));
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(

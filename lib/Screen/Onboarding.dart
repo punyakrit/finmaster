@@ -20,7 +20,7 @@ class Onboarding extends StatelessWidget {
 
           onBoardData: onBoardData,
           titleStyles: const TextStyle(
-            color: Colors.deepOrange,
+            color: Colors.deepPurple,
             fontSize: 25,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.15,
@@ -33,8 +33,8 @@ class Onboarding extends StatelessWidget {
           ),
           pageIndicatorStyle: const PageIndicatorStyle(
             width: 100,
-            inactiveColor: Colors.deepOrangeAccent,
-            activeColor: Colors.deepOrange,
+            inactiveColor: Colors.deepPurpleAccent,
+            activeColor: Colors.deepPurple,
             inactiveSize: Size(8, 8),
             activeSize: Size(12, 12),
           ),
@@ -57,7 +57,7 @@ class Onboarding extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     gradient: const LinearGradient(
-                      colors: [Colors.redAccent, Colors.deepOrangeAccent],
+                      colors: [Colors.purpleAccent, Colors.deepPurpleAccent],
                     ),
                   ),
                   child: Text(
@@ -110,22 +110,22 @@ class Onboarding extends StatelessWidget {
 
 final List<OnBoardModel> onBoardData = [
   const OnBoardModel(
-    title: "Remember Daily tasks",
+    title: "Track your mood and reflect on your day",
     description:
-        "The app provide a platform where you don't need to remember your everyday tasks",
-    imgUrl: "assets/gif.gif"
+"Get an overview of how you are performing and motivate yourself to achieve even more.",
+    imgUrl: "assets/img1.webp"
     
   ),
   const OnBoardModel(
-    title: "Track Progress",
+    title: "Record spending & income",
     description:
-        "You can easily track your daily progress and perform your tasks efficiently",
-    imgUrl: 'assets/gif2.gif',
+        "Just add transactions and you'll always know where your money goes",
+    imgUrl: 'assets/img2.jpg',
   ),
   const OnBoardModel(
-    title: "Get Notified Instantly",
+    title: "Getting started is easy",
     description:
-        "You get notifications of your task and track your daily work on this platform",
-    imgUrl: 'assets/gif3.gif',
+        "Create your user and workspace name and you're in.",
+    imgUrl: 'assets/img3.png',
   ),
 ];
