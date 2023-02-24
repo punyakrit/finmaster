@@ -11,11 +11,23 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController phoneController = TextEditingController();
   // ignore: non_constant_identifier_names
-  Country SelectedCountry = Country(phoneCode: "91", countryCode: "IN", e164Sc: 0, geographic: true, level: 1, name: "India", example: "India", displayName: "India", displayNameNoCountryCode: "IN", e164Key: "");
-
+  Country SelectedCountry = Country(
+      phoneCode: "91",
+      countryCode: "IN",
+      e164Sc: 0,
+      geographic: true,
+      level: 1,
+      name: "India",
+      example: "India",
+      displayName: "India",
+      displayNameNoCountryCode: "IN",
+      e164Key: "");
 
   @override
   Widget build(BuildContext context) {
+    phoneController.selection = TextSelection.fromPosition(
+      TextPosition(offset: phoneController.text.length),
+    );
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -53,10 +65,22 @@ class _LoginState extends State<Login> {
                 height: 20,
               ),
               TextFormField(
+              keyboardType: TextInputType.phone,
                 cursorColor: Colors.purple,
                 controller: phoneController,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                onChanged: (value) {
+                  setState(() {
+                    phoneController.text = value;
+                  });
+                },
                 decoration: InputDecoration(
                   hintText: "Enter phone number",
+                  hintStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      color: Colors.grey.shade600),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(color: Colors.black12)),
@@ -64,13 +88,42 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(10),
                       borderSide: const BorderSide(color: Colors.black12)),
                   prefixIcon: Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(13),
                     child: InkWell(
-                    onTap: (){},
-                    child: Text("${SelectedCountry.flagEmoji}"),
+                      onTap: () {
+                        showCountryPicker(
+                          context: context,
+                          countryListTheme: const CountryListThemeData(
+                              bottomSheetHeight: 500),
+                          onSelect: (value) {
+                            setState(() {
+                              SelectedCountry = value;
+                            });
+                          },
+                        );
+                      },
+                      child: Text(
+                        "${SelectedCountry.flagEmoji} +${SelectedCountry.phoneCode}",
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
-
+                  suffixIcon: phoneController.text.length > 9
+                      ? Container(
+                          height: 30,
+                          width: 30,
+                          margin: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.green),
+                          child: const Icon(
+                            Icons.done,
+                            color: Colors.white,
+                            size: 20,
+                          ))
+                      : null,
                 ),
               )
             ],

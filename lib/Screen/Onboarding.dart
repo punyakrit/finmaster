@@ -96,7 +96,7 @@ class Onboarding extends StatelessWidget {
                 } else if (snapshot.hasData) {
                   return Home();
                 } else {
-                  return Home();
+                  return Login();
                 }
               }
               )
