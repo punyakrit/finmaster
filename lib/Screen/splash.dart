@@ -1,5 +1,8 @@
 import 'package:finmaster/Screen/Onboarding.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'home/Home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,18 +21,27 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // ignore: unnecessary_new
     new Future.delayed(
-        const Duration(seconds: 3),
+        const Duration(seconds: 5),
         () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                  
-                   Onboarding()
-                
-              
+                   StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Something went Wront!'));
+                } else if (snapshot.hasData) {
+                  return Home();
+                } else {
+                  return Onboarding();
+                }
+              }
               )
                       ),
-            
+            )
             );
   }
 

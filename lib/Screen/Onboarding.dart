@@ -1,6 +1,9 @@
+import 'package:finmaster/Screen/Login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
+
+import 'home/Home.dart';
 
 
 class Onboarding extends StatelessWidget {
@@ -91,7 +94,7 @@ class Onboarding extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Something went Wront!'));
                 } else if (snapshot.hasData) {
-                  return HomePage();
+                  return Home();
                 } else {
                   return Login();
                 }
