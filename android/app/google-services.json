@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "987365214450",
+    "project_id": "finmaster-48bb8",
+    "storage_bucket": "finmaster-48bb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987365214450:android:956e65679fe61d645ea86b",
+        "android_client_info": {
+          "package_name": "com.example.finmaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987365214450-55eoikr91goo0n6mm0omubbblh4dfk5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDIYcAwcCNLuJLK31UCMcpFv7a5lw5EoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987365214450-55eoikr91goo0n6mm0omubbblh4dfk5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
