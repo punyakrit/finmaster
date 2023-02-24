@@ -16,11 +16,11 @@ class _Add_ScreenState extends State<Add_Screen> {
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: [
-            background_container(context),
-            Positioned(
-              top: 120,
-              child: main_container(),
-            ),
+            // background_container(context),
+            // Positioned(
+            //   top: 120,
+            //   child: main_container(),
+            // ),
           ],
         ),
       ),

@@ -1,7 +1,6 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:finmaster/Screen/Login/login.dart';
-import 'package:finmaster/provider/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboard/flutter_onboard.dart';
@@ -14,7 +13,6 @@ class Onboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ap = Provider.of<AuthProvider>(context, listen: false);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -56,13 +54,24 @@ class Onboarding extends StatelessWidget {
               final state = ref.watch(onBoardStateProvider);
               return InkWell(
                 onTap: () {
-                ap.isSignedIn == true?
-              Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Home())
-                      )
-                 : Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => Login())
-                      );
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => 
+          StreamBuilder<User?>(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Something went Wront!'));
+                } else if (snapshot.hasData) {
+                  return Home();
+                } else {
+                  return Login();
+                }
+              }
+              )
+              )
+              );
                 },
                 child: Container(
                   width: 230,

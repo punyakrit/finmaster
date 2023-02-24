@@ -1,4 +1,6 @@
+import 'package:fancy_snackbar/fancy_snackbar.dart';
 import 'package:finmaster/Screen/home/listdata.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -12,6 +14,49 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    appBar: AppBar(shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(35),
+                bottomRight: Radius.circular(35))),
+        toolbarHeight: 120,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Row(children: [
+          SizedBox(width: 10),
+          Text("All Task's",
+              style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 38)),
+        ]),
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 20),
+            child: IconButton(
+              icon: Icon(
+                Icons.login,
+                color: Colors.red,
+                size: 40,
+              ),
+              onPressed: () {
+                FancySnackbar.showSnackbar(
+                  context,
+                  snackBarType: FancySnackBarType.success,
+                  title: "Successfully Logged Out",
+                  message: "",
+                  duration: 4,
+                );
+                new Future.delayed(const Duration(seconds: 0), () {
+                  FirebaseAuth.instance.signOut();
+                }
+                );
+              },
+            ),
+          ),
+        ],),
+
+
+        
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -117,6 +162,7 @@ class _HomeState extends State<Home> {
                           Icons.notification_add_outlined,
                           size: 30,
                           color: Colors.white,
+                          
                         ),
                       ),
                     ),
