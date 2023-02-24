@@ -36,6 +36,8 @@ dependencies:
   country_picker: ^2.0.19
   cloud_firestore: ^4.4.3
   firebase_storage: ^11.0.14
+  pinput: ^2.2.31
+
 
 
 
