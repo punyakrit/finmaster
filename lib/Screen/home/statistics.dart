@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:finmaster/Screen/home/Chart.dart';
 import 'package:finmaster/Screen/home/top.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +111,6 @@ class _StatisticsState extends State<Statistics> {
                 SizedBox(
                   height: 20,
                 ),
-                Chart(),
                 SizedBox(
                   height: 20,
                 ),

@@ -1,5 +1,7 @@
 import 'package:finmaster/Screen/home/listdata.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'listdata.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -74,12 +76,11 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 19,
-                      color: geter()[index].buy! ? Colors.red: Colors.green,
+                      color: geter()[index].buy! ? Colors.red : Colors.green,
                     ),
                   ),
                 );
-              },
-               childCount: geter().length),
+              }, childCount: geter().length),
             ),
           ],
         ),
@@ -109,14 +110,18 @@ class _HomeState extends State<Home> {
                     left: 340,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(7),
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        color: Color.fromARGB(255, 235, 137, 254),
-                        child: Icon(
-                          Icons.notification_add_outlined,
-                          size: 30,
-                          color: Colors.white,
+                      child: InkWell(
+                        onTap: () => FirebaseAuth.instance.signOut(),
+                        child: Container(
+                          
+                          height: 40,
+                          width: 40,
+                          color: Color.fromARGB(255, 235, 137, 254),
+                          child: Icon(
+                            Icons.login,
+                            size: 30,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
