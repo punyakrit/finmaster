@@ -112,15 +112,18 @@ class _HomeState extends State<Home> {
                     left: 340,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(7),
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        color: Color.fromARGB(255, 235, 137, 254),
-                        child: Icon(
-                          Icons.notification_add_outlined,
-                          size: 30,
-                          color: Colors.white,
-                          
+                      child: InkWell(
+                      onTap:()=> FirebaseAuth.instance.signOut(),
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          color: Color.fromARGB(255, 235, 137, 254),
+                          child: Icon(
+                            Icons.login,
+                            size: 30,
+                            color: Colors.white,
+                            
+                          ),
                         ),
                       ),
                     ),
